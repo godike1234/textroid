@@ -9,4 +9,26 @@ ami = "ami-000a59677875221a3"
 instance_type = "t2.micro"
 key_name = "linuxec2"}
 
-creation of S3 bucket 
+creation of S3 bucket :
+terraform {
+  required_providers {
+    aws = {
+      source = "hashicorp/aws"
+      version = "5.10.0"
+    }
+  }
+}
+
+provider "aws" {
+  # Configuration options
+  region = "us-east-1"
+}
+resource "aws_s3_bucket" "example" {
+  bucket = "my-tf-test-bucket"
+
+  tags = {
+    Name        = "My bucket"
+    Environment = "Dev"
+  }
+}
+
